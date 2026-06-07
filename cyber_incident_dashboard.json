@@ -1,0 +1,192 @@
+{
+    "title": "Cyber Incident Investigation Portfolio",
+    "description": "Sanitized incident investigation demonstrating attack timeline reconstruction, threat analysis, MITRE ATT&CK mapping, and incident response reporting.",
+    "inputs": {
+        "input_global_trp": {
+            "options": {
+                "defaultValue": "-24h@h,now",
+                "token": "global_time"
+            },
+            "title": "Global Time Range",
+            "type": "input.timerange"
+        }
+    },
+    "defaults": {
+        "dataSources": {
+            "ds.search": {
+                "options": {
+                    "queryParameters": {
+                        "earliest": "$global_time.earliest$",
+                        "latest": "$global_time.latest$"
+                    }
+                }
+            },
+            "ds.spl2": {
+                "options": {
+                    "queryParameters": {
+                        "earliest": "$global_time.earliest$",
+                        "latest": "$global_time.latest$"
+                    }
+                }
+            }
+        },
+        "visualizations": {
+            "global": {
+                "showProgressBar": true
+            }
+        }
+    },
+    "visualizations": {
+        "viz_NVTlRnPO": {
+            "options": {
+                "preserveAspectRatio": true
+            },
+            "type": "splunk.image"
+        },
+        "viz_UQ1iAxtO": {
+            "options": {
+                "markdown": "# Cyber Incident Investigation\n\n**Attack Type:** Credential Compromise\n\n**Threat Source:** 185.220.101.9 (TOR Exit Node)\n\n## Key Findings\n- Unauthorized SSH key access\n- Cron-based persistence\n- Customer data collection\n- Data exfiltration\n- Offboarding control failure\n- SIEM-driven containment\n\n**Status:** Contained\n\n**Confidence:** High"
+            },
+            "title": "Incident Summary",
+            "type": "splunk.markdown"
+        },
+        "viz_ZChulmdC": {
+            "dataSources": {
+                "primary": "ds_cG244DXe"
+            },
+            "options": {},
+            "title": "Incident Timeline",
+            "type": "splunk.table"
+        },
+        "viz_fZMmaPVI": {
+            "dataSources": {
+                "primary": "ds_3iVoDdNN"
+            },
+            "options": {},
+            "title": "Attack Progression",
+            "type": "splunk.column"
+        },
+        "viz_q0lJOc52": {
+            "options": {
+                "markdown": ""
+            },
+            "type": "splunk.markdown"
+        },
+        "viz_wI16c0rT": {
+            "dataSources": {
+                "primary": "ds_aTYSEFpn"
+            },
+            "title": "MITRE ATT&CK Mapping",
+            "type": "splunk.bar"
+        }
+    },
+    "dataSources": {
+        "ds_3iVoDdNN": {
+            "name": "Search_1",
+            "options": {
+                "query": "| inputlookup attack_timeline.csv\r\n| stats count by phase"
+            },
+            "type": "ds.search"
+        },
+        "ds_aTYSEFpn": {
+            "name": "ds_mitre_mapping",
+            "options": {
+                "query": "| inputlookup attack_timeline.csv\r\n| eval tactic=case(\r\nphase=\"Reconnaissance\",\"Reconnaissance\",\r\nphase=\"Initial Access\",\"Initial Access\",\r\nphase=\"Persistence\",\"Persistence\",\r\nphase=\"Collection\",\"Collection\",\r\nphase=\"Exfiltration\",\"Exfiltration\",\r\nphase=\"Defense Evasion\",\"Defense Evasion\",\r\nphase=\"Discovery\",\"Discovery\",\r\nphase=\"Credential Abuse\",\"Privilege Escalation\",\r\nphase=\"Credential Manipulation\",\"Credential Access\",\r\nphase=\"Containment\",\"Impact\")\r\n| stats count by tactic"
+            },
+            "type": "ds.search"
+        },
+        "ds_cG244DXe": {
+            "name": "incident_timeline_search",
+            "options": {
+                "query": "| inputlookup attack_timeline.csv\r\n| eval _time=strptime(timestamp,\"%Y-%m-%d %H:%M\")\r\n| sort 0 _time\r\n| table timestamp phase role confidence"
+            },
+            "type": "ds.search"
+        }
+    },
+    "layout": {
+        "globalInputs": [
+            "input_global_trp"
+        ],
+        "layoutDefinitions": {
+            "layout_1": {
+                "options": {
+                    "display": "auto",
+                    "height": 1400,
+                    "width": 1440
+                },
+                "structure": [
+                    {
+                        "item": "viz_UQ1iAxtO",
+                        "position": {
+                            "h": 360,
+                            "w": 1400,
+                            "x": 20,
+                            "y": 20
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_fZMmaPVI",
+                        "position": {
+                            "h": 400,
+                            "w": 680,
+                            "x": 10,
+                            "y": 410
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_wI16c0rT",
+                        "position": {
+                            "h": 400,
+                            "w": 700,
+                            "x": 710,
+                            "y": 410
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_ZChulmdC",
+                        "position": {
+                            "h": 400,
+                            "w": 1400,
+                            "x": 20,
+                            "y": 820
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_NVTlRnPO",
+                        "position": {
+                            "h": 50,
+                            "w": 50,
+                            "x": 0,
+                            "y": 1300
+                        },
+                        "type": "block"
+                    },
+                    {
+                        "item": "viz_q0lJOc52",
+                        "position": {
+                            "h": 300,
+                            "w": 300,
+                            "x": 480,
+                            "y": -440
+                        },
+                        "type": "block"
+                    }
+                ],
+                "type": "absolute"
+            }
+        },
+        "options": {},
+        "tabs": {
+            "items": [
+                {
+                    "label": "Incident Investigation",
+                    "layoutId": "layout_1"
+                }
+            ]
+        }
+    }
+}
