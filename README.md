@@ -2,87 +2,195 @@
 ### Enterprise SOC Investigation & Detection Engineering with Splunk
 
 ## Executive Summary
-Security Operations Centers (SOCs) generate thousands of security events every day. Without effective visualization and correlation, analysts can spend valuable time manually piecing together attacker activity.
+Modern Security Operations Centers (SOCs) process thousands of security events every day. During an active cyber incident, analysts must rapidly determine what happened, when it happened, how the attacker progressed through the environment, and what actions should be taken next.
 
-This project demonstrates how Splunk Dashboard Studio can transform raw security telemetry into an interactive investigation platform that accelerates incident triage, improves situational awareness, and supports evidence-based decision making.
+Traditional SIEM dashboards often present isolated alerts that require analysts to manually correlate events across multiple data sources, increasing investigation time and the likelihood of overlooking critical evidence.
 
-The dashboard was designed to help analysts quickly identify malicious activity, reconstruct attack timelines, map adversary behavior to the MITRE ATT&CK framework, and prioritize response actions.
+This project demonstrates how Splunk Dashboard Studio can be used to transform raw security telemetry into an interactive investigation platform that improves analyst efficiency, accelerates incident triage, and enhances security visibility.
+
+The solution consolidates investigation data into a single operational dashboard that enables analysts to reconstruct attacker activity, visualize attack progression, correlate related security events, and map adversary behavior to the MITRE ATT&CK Framework.
+
+## Solution Architecture
+<img width="757" height="412" alt="image" src="https://github.com/user-attachments/assets/73c63670-4523-49ba-be49-9d5916ea358e" />
+
+## Project Preview
+
+<img width="1918" height="785" alt="Screenshot 2026-06-27 193443" src="https://github.com/user-attachments/assets/e1a7fc42-a253-464f-b3a4-de5068a1fe10" />
+<img width="1911" height="805" alt="Screenshot 2026-06-27 193515" src="https://github.com/user-attachments/assets/c91978e9-08ab-486d-9e2c-e091896c76ca" />
+<img width="1916" height="881" alt="Screenshot 2026-06-27 193538" src="https://github.com/user-attachments/assets/e32fc722-f975-43df-adac-210e443d2285" />
+
 
 ## Business Problem
-Traditional SIEM dashboards often present large volumes of isolated alerts with limited context. During active investigations, analysts must correlate multiple log sources, identify relationships between events, and determine attack progression under time pressure.
+During security investigations, analysts must rapidly answer several critical questions:
 
-This project addresses that challenge by presenting correlated security events through a single investigation dashboard that enables faster analysis and more informed incident response.
+- What attack occurred?
+- Which systems were affected?
+- How did the attacker gain access?
+- What actions occurred after initial compromise?
+- Which MITRE ATT&CK techniques were observed?
+- What should the incident response team do next?
+
+Answering these questions manually often requires analysts to switch between multiple SIEM searches, dashboards, and raw event logs.
+
+This project addresses that challenge by consolidating investigation workflows into a single operational dashboard that improves visibility, reduces investigation complexity, and supports evidence-based decision making.
 
 ## Objectives
-The primary objectives of this project were to:
+This project was designed to:
 
-- Improve visibility into security incidents through centralized visualization.
-- Reduce investigation time by correlating related security events.
-- Provide analysts with an intuitive attack timeline.
-- Translate raw log data into meaningful security intelligence.
+- Centralize security investigation data into a single operational view.
+- Reduce analyst investigation time through event correlation.
+- Reconstruct attacker timelines using normalized timestamps.
+- Map observed activity to the MITRE ATT&CK Framework.
+- Improve SOC situational awareness.
 - Demonstrate practical SIEM engineering using Splunk Dashboard Studio.
+- Showcase enterprise dashboard engineering for security operations.
 
 ## Solution Overview
-The dashboard combines multiple investigation components into a unified operational view.
+The dashboard follows the same investigative process used in mature Security Operations Centers.
 
-### Incident Overview
+1. Incident Overview
 
-Provides analysts with an immediate understanding of the active investigation, including incident classification, priority level, and current investigation status.
+Provides analysts with an immediate understanding of the active incident, including:
 
-### Timeline Reconstruction
+- Incident classification
+- Severity
+- Investigation status
+- Priority
+- Initial triage information
+  
+2. Timeline Reconstruction
 
-Security events are automatically organized into chronological order using timestamp normalization, allowing investigators to understand the sequence of attacker activity from initial access through post-compromise actions.
+Normalizes timestamps and reconstructs attacker activity into chronological order, allowing investigators to understand the complete attack lifecycle.
 
-### MITRE ATT&CK Mapping
+Benefits include:
 
-Relevant events are mapped against MITRE ATT&CK tactics and techniques to help analysts understand attacker objectives and identify gaps in detection coverage.
+- Faster forensic analysis
+- Clear attack progression
+- Evidence preservation
+- Improved investigation accuracy
 
-### Security Event Correlation
+3. Security Event Correlation
 
-Multiple event sources are correlated using Splunk Search Processing Language (SPL), enabling analysts to connect authentication events, endpoint activity, and suspicious behavior within a single investigation workflow.
+Correlates multiple security events using Splunk Search Processing Language (SPL).
 
-### Investigation Dashboard
+Examples include:
 
-The final dashboard provides an operational view designed to support:
+- Authentication activity
+- Endpoint events
+- Security alerts
+- User behavior
+- Suspicious host activity
+
+Correlation reduces manual analysis by connecting related events into a unified investigation timeline.
+
+4. MITRE ATT&CK Mapping
+
+Observed attacker behavior is mapped against the MITRE ATT&CK Framework to improve analyst understanding of adversary tactics and techniques.
+
+Example techniques that may be represented include:
+
+- Initial Access
+- Execution
+- Persistence
+- Privilege Escalation
+- Credential Access
+- Discovery
+- Lateral Movement
+- Collection
+- Exfiltration
+
+This enables analysts to understand attacker objectives while identifying opportunities for future detection engineering.
+
+5. Investigation Dashboard
+
+The completed dashboard supports several SOC functions, including:
 
 - Incident Triage
 - Threat Hunting
 - Root Cause Analysis
-- Executive Reporting
-- SOC Investigations
+- Security Reporting
+- Executive Briefings
+- Detection Validation
 
 ## Technologies Used
-Technology	Purpose
-Splunk Enterprise	Security Information & Event Management (SIEM)
-Splunk Dashboard Studio	Interactive Dashboard Development
-Splunk SPL	Event Correlation & Search Logic
-MITRE ATT&CK	Adversary Behavior Mapping
-JSON	Dashboard Configuration
-Security Event Logs	Investigation Data Source
+The project demonstrates practical implementation of:
+
+- Splunk Dashboard Studio
+- Splunk Search Processing Language (SPL)
+- Interactive dashboard engineering
+- Timeline reconstruction
+- Event normalization
+- Event correlation
+- Investigation visualization
+- MITRE ATT&CK enrichment
+- Dashboard filtering
+- Security reporting
+
+## Technologies Used
+Technology	                              Purpose
+Splunk Enterprise	        Security Information & Event Management (SIEM)
+Splunk Dashboard Studio	          Dashboard Development
+Splunk SPL	                 Event Correlation and Search Logic
+MITRE ATT&CK                  	Adversary Behavior Mapping
+JSON	                            Dashboard Configuration
+Security Event Logs	            Investigation Data Source
+
 
 ## Skills Demonstrated
 
 This project demonstrates practical experience in:
 
-Security Operations Center (SOC) Monitoring
-Incident Investigation
-Detection Engineering
-SIEM Dashboard Development
-Splunk Search Processing Language (SPL)
-Security Event Correlation
-Threat Hunting
-MITRE ATT&CK Mapping
-Security Reporting
-Data Visualization
+- Security Operations Center (SOC) Monitoring
+- Incident Investigation
+- Detection Engineering
+- SIEM Dashboard Development
+- Splunk Search Processing Language (SPL)
+- Security Event Correlation
+- Threat Hunting
+- MITRE ATT&CK Mapping
+- Security Reporting
+- Data Visualization
+
+## Business Value
+
+This solution provides measurable operational value by:
+
+- Improving analyst visibility during investigations.
+- Reducing investigation complexity.
+- Accelerating incident triage.
+- Supporting evidence-based response decisions.
+- Standardizing investigation workflows.
+- Improving executive reporting through clear visualization.
+- Enhancing SOC operational efficiency.
+
+## Project Limitations
+This project is intended as a portfolio demonstration and therefore has several limitations:
+
+- Uses demonstration security data.
+- Does not perform automated containment or response actions.
+- Assumes normalized event timestamps.
+- Detection quality depends on available log sources.
+- Dashboard content can be extended for additional enterprise use cases.
+
+Documenting these limitations reflects realistic engineering practice and demonstrates awareness of operational constraints.
+
+## Future Enhancements
+Potential future improvements include:
+
+- SOAR integration for automated response.
+- Risk scoring and incident prioritization.
+- User and Entity Behavior Analytics (UEBA).
+- Threat intelligence enrichment.
+- Geolocation visualization.
+- Automated investigation playbooks.
+- Multi-dashboard SOC monitoring suite.
+- Executive KPI reporting.
 
 ## Key Takeaways
+This project demonstrates how effective dashboard engineering can transform large volumes of security telemetry into actionable intelligence for Security Operations Centers.
 
-This project demonstrates how effective dashboard engineering can improve the speed and quality of cyber incident investigations by transforming raw telemetry into actionable intelligence.
-
-Rather than presenting isolated alerts, the solution emphasizes context, attacker behavior, and investigative workflow—principles that are fundamental to modern Security Operations Centers.
-
+Rather than presenting isolated alerts, the dashboard emphasizes investigative context, attacker behavior, evidence correlation, and operational decision support, principles that underpin modern detection engineering and incident response.
 ## Author
-
-**Dakang Victor Ladat**
+### Dakang Victor Ladat
 
 Cyber Defense Analyst | Security Operations | Threat Hunting | Incident Response | Digital Forensics | Detection Engineering
