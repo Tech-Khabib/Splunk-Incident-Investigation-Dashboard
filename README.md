@@ -1,5 +1,5 @@
 # Cyber Incident Investigation Dashboard
-##**Enterprise SOC Investigation & Detection Engineering with Splunk**
+### Enterprise SOC Investigation & Detection Engineering with Splunk
 
 ## Executive Summary
 Security Operations Centers (SOCs) generate thousands of security events every day. Without effective visualization and correlation, analysts can spend valuable time manually piecing together attacker activity.
